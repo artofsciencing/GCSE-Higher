@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCSE Science Higher Tier — Advanced Learning Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DESIGN SYSTEM — Warm Editorial Ink
+   ══════════════════════════════════════ */
+:root {
+  --ink:       #1a1408;
+  --paper:     #f5f0e8;
+  --paper2:    #ede8dc;
+  --paper3:    #e4ddd0;
+  --ruled:     rgba(26,20,8,0.07);
+  --muted:     #7a7060;
+  --gold:      #b8860b;
+  --gold-lt:   #f0d060;
+
+  /* Subject palette */
+  --bio:       #1a6644;
+  --bio-lt:    rgba(26,102,68,0.08);
+  --bio-mid:   rgba(26,102,68,0.18);
+  --chem:      #b84c1a;
+  --chem-lt:   rgba(184,76,26,0.08);
+  --chem-mid:  rgba(184,76,26,0.18);
+  --phys:      #1a4cb8;
+  --phys-lt:   rgba(26,76,184,0.08);
+  --phys-mid:  rgba(26,76,184,0.18);
+
+  --h-only:    #7b1fa2;
+  --h-only-lt: rgba(123,31,162,0.1);
+  --h-border:  rgba(123,31,162,0.4);
+
+  --shadow-sm: 0 2px 8px rgba(26,20,8,0.08);
+  --shadow-md: 0 6px 24px rgba(26,20,8,0.12);
+  --shadow-lg: 0 16px 48px rgba(26,20,8,0.16);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Ruled paper texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: repeating-linear-gradient(
+    transparent 0px, transparent 27px,
+    var(--ruled) 28px, transparent 29px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══ HEADER ══ */
+.site-header {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 3px solid var(--gold);
+}
+
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex; align-items: stretch;
+  height: 64px;
+}
+
+.logo-block {
+  display: flex; align-items: center; gap: 1rem;
+  padding-right: 2rem;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo-crest {
+  width: 36px; height: 36px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.logo-text { line-height: 1.25; }
+.logo-text strong {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.3px;
+  color: #fff;
+}
+.logo-text span {
+  font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--gold); font-weight: 500;
+}
+
+.header-nav {
+  display: flex; align-items: center;
+  gap: 0; margin-left: 1.5rem; flex: 1;
+}
+
+.nav-tab {
+  height: 100%;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  cursor: pointer; border: none; background: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.nav-tab:hover { color: rgba(255,255,255,0.85); }
+.nav-tab.active-bio  { color: #6fc99a; border-color: #6fc99a; }
+.nav-tab.active-chem { color: #f0956a; border-color: #f0956a; }
+.nav-tab.active-phys { color: #7aaeff; border-color: #7aaeff; }
+
+.header-right {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 1rem;
+  padding-left: 2rem;
+  border-left: 1px solid rgba(255,255,255,0.12);
+}
+
+.xp-bar-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.xp-label { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px; }
+.xp-bar { width: 100px; height: 5px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+.xp-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-lt)); width: 0%; transition: width 0.6s cubic-bezier(.34,1.56,.64,1); border-radius: 10px; }
+
+/* ══ HERO ══ */
+.hero-banner {
+  position: relative; z-index: 1;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.hero-banner::after {
+  content: 'H';
+  position: absolute; right: -0.05em; top: -0.15em;
+  font-family: 'Playfair Display', serif;
+  font-size: 28rem; font-weight: 900; font-style: italic;
+  color: rgba(255,255,255,0.03);
+  line-height: 1; pointer-events: none; user-select: none;
+}
+
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 5rem 2.5rem 4rem;
+  position: relative; z-index: 1;
+}
+
+.tier-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--h-only); color: #fff;
+  padding: 0.3rem 0.9rem; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.hero-inner h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  font-weight: 900; line-height: 1.0;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-inner h1 em {
+  font-style: italic;
+  color: var(--gold-lt);
+}
+
+.hero-desc {
+  max-width: 560px;
+  color: rgba(245,240,232,0.6);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.hero-meta {
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+}
+
+.hero-stat { line-height: 1.3; }
+.hero-stat .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--gold-lt);
+}
+.hero-stat .lbl {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(245,240,232,0.4); display: block;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══ LAYOUT ══ */
+.app-body {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 3rem 2.5rem 6rem;
+}
+
+/* ══ PANELS ══ */
+.subject-panel { display: none; }
+.subject-panel.active {
+  display: block;
+  animation: revealPanel 0.45s cubic-bezier(.22,.68,0,1.2);
+}
+
+@keyframes revealPanel {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ SECTION TITLE ══ */
+.section-intro {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem; align-items: end;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.section-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; font-weight: 900; font-style: italic;
+  line-height: 1; color: var(--paper3);
+  align-self: center;
+}
+
+.section-intro h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  letter-spacing: -0.5px; line-height: 1.2;
+}
+
+.section-intro h2.bio  { color: var(--bio); }
+.section-intro h2.chem { color: var(--chem); }
+.section-intro h2.phys { color: var(--phys); }
+
+.section-intro p {
+  color: var(--muted); font-size: 0.95rem;
+  margin-top: 0.5rem; max-width: 480px;
+  font-weight: 300; line-height: 1.7;
+}
+
+/* ══ TOPIC ACCORDION ══ */
+.topics-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 3rem; }
+
+.topic-item {
+  background: #fff;
+  border: 1px solid var(--paper3);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.topic-item:hover { box-shadow: var(--shadow-md); }
+.topic-item.expanded { border-color: var(--paper3); box-shadow: var(--shadow-lg); }
+
+.topic-trigger {
+  width: 100%; padding: 1.2rem 1.6rem;
+  display: flex; align-items: center; gap: 1.2rem;
+  cursor: pointer; background: none; border: none;
+  text-align: left; font-family: 'DM Sans', sans-serif;
+}
+
+.topic-trigger:hover .trig-arrow { transform: translateX(3px); }
+
+.trig-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; color: var(--muted);
+  min-width: 26px; flex-shrink: 0;
+}
+
+.trig-emoji {
+  font-size: 1.25rem; flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.bio  .trig-emoji { background: var(--bio-lt); }
+.chem .trig-emoji { background: var(--chem-lt); }
+.phys .trig-emoji { background: var(--phys-lt); }
+
+.trig-text { flex: 1; }
+.trig-title {
+  font-weight: 600; font-size: 0.97rem;
+  color: var(--ink); display: block; letter-spacing: -0.1px;
+}
+.trig-sub {
+  font-size: 0.78rem; color: var(--muted);
+  font-weight: 300; margin-top: 0.1rem;
+}
+
+.trig-tags { display: flex; gap: 0.4rem; align-items: center; flex-shrink: 0; }
+
+.tag {
+  font-size: 0.62rem; font-weight: 500;
+  padding: 0.25rem 0.55rem; border-radius: 3px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.tag-h {
+  background: var(--h-only-lt);
+  color: var(--h-only);
+  border: 1px solid var(--h-border);
+}
+
+.tag-calc {
+  background: rgba(184,134,11,0.1);
+  color: var(--gold);
+  border: 1px solid rgba(184,134,11,0.3);
+}
+
+.trig-arrow {
+  color: var(--muted); font-size: 0.7rem;
+  transition: transform 0.25s ease; flex-shrink: 0;
+}
+
+.topic-item.expanded .trig-arrow { transform: rotate(90deg); }
+
+/* ══ TOPIC BODY ══ */
+.topic-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(.4,0,.2,1);
+  border-top: 0px solid var(--ruled);
+}
+
+.topic-item.expanded .topic-body {
+  max-height: 2000px;
+  border-top-width: 1px;
+}
+
+.body-inner {
+  padding: 1.8rem 1.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.4rem;
+}
+
+@media (max-width: 800px) { .body-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .body-inner { grid-template-columns: 1fr; } }
+
+.body-col h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--muted); margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--paper3); padding-bottom: 0.5rem;
+}
+
+.kp-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+
+.kp-list li {
+  font-size: 0.875rem; line-height: 1.6; color: var(--ink);
+  font-weight: 400; display: flex; gap: 0.5rem; align-items: flex-start;
+  padding: 0.2rem 0;
+}
+
+.kp-list li.h-only {
+  background: var(--h-only-lt);
+  padding: 0.35rem 0.5rem; border-radius: 4px;
+  border-left: 2px solid var(--h-only);
+}
+
+.dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  margin-top: 7px; flex-shrink: 0;
+}
+
+.bio  .dot { background: var(--bio); }
+.chem .dot { background: var(--chem); }
+.phys .dot { background: var(--phys); }
+
+.h-dot { background: var(--h-only); }
+
+/* ══ FORMULA BOX ══ */
+.eq-box {
+  background: var(--ink);
+  color: var(--gold-lt);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.85;
+  letter-spacing: 0.2px;
+}
+
+/* ══ EXAM TIP ══ */
+.exam-tip {
+  margin-top: 0.9rem;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 0.84rem; line-height: 1.6;
+}
+
+.exam-tip .et-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1.5px;
+  font-weight: 500; display: block; margin-bottom: 0.35rem;
+}
+
+.bio  .exam-tip { background: var(--bio-lt);  border-left: 3px solid var(--bio);  }
+.bio  .exam-tip .et-label { color: var(--bio); }
+.chem .exam-tip { background: var(--chem-lt); border-left: 3px solid var(--chem); }
+.chem .exam-tip .et-label { color: var(--chem); }
+.phys .exam-tip { background: var(--phys-lt); border-left: 3px solid var(--phys); }
+.phys .exam-tip .et-label { color: var(--phys); }
+
+/* ══ MARK SCHEME ══ */
+.mark-scheme {
+  margin-top: 0.9rem;
+  padding: 0.8rem 1rem;
+  background: rgba(184,134,11,0.06);
+  border: 1px solid rgba(184,134,11,0.2);
+  border-radius: 6px;
+  font-size: 0.83rem; line-height: 1.65;
+}
+
+.mark-scheme .ms-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--gold); display: block; margin-bottom: 0.35rem;
+}
+
+.mark-scheme ul { list-style: none; }
+.mark-scheme ul li::before { content: '✓ '; color: var(--gold); font-weight: 700; }
+.mark-scheme ul li { font-size: 0.82rem; color: var(--ink); padding: 0.1rem 0; }
+
+/* ══ FLASHCARD MODE ══ */
+.mode-toggle {
+  display: flex; gap: 0.5rem; margin-bottom: 2rem;
+  padding: 0.4rem;
+  background: var(--paper2);
+  border-radius: 8px;
+  width: fit-content;
+  border: 1px solid var(--paper3);
+}
+
+.mode-btn {
+  padding: 0.55rem 1.4rem;
+  border-radius: 6px; border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.83rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  background: transparent; color: var(--muted);
+}
+
+.mode-btn.active {
+  background: #fff; color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.flashcard-view { display: none; }
+.flashcard-view.active { display: block; animation: revealPanel 0.3s ease; }
+.topics-view { display: block; }
+.topics-view.hidden { display: none; }
+
+/* Flashcard deck */
+.flashcard-deck { position: relative; height: 260px; margin-bottom: 2rem; }
+.flashcard {
+  position: absolute; inset: 0;
+  background: #fff;
+  border: 1px solid var(--paper3);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(.36,.07,.19,.97);
+  user-select: none;
+  backface-visibility: hidden;
+}
+
+.flashcard.flipped { transform: rotateY(180deg); }
+
+.fc-front, .fc-back {
+  position: absolute; inset: 2.5rem;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; flex-direction: column; gap: 1rem;
+  backface-visibility: hidden;
+}
+
+.fc-back { transform: rotateY(180deg); }
+
+.fc-subject-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px;
+  padding: 0.2rem 0.6rem; border-radius: 3px;
+}
+
+.fc-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 600; line-height: 1.5;
+  color: var(--ink);
+}
+
+.fc-tap { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+
+.fc-answer {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.88rem; line-height: 1.8; color: var(--ink);
+  background: var(--paper2); padding: 1rem 1.4rem; border-radius: 6px;
+  text-align: left; width: 100%;
+}
+
+.fc-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.fc-counter { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+.fc-dots { display: flex; gap: 0.35rem; }
+.fc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--paper3); transition: all 0.2s; }
+.fc-dot.active { width: 18px; border-radius: 3px; }
+.bio .fc-dot.active  { background: var(--bio); }
+.chem .fc-dot.active { background: var(--chem); }
+.phys .fc-dot.active { background: var(--phys); }
+
+/* ══ QUIZ ══ */
+.quiz-shell {
+  background: #fff;
+  border: 1px solid var(--paper3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-top: 0.5rem;
+}
+
+.quiz-top {
+  padding: 1.4rem 1.8rem;
+  border-bottom: 1px solid var(--paper2);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--paper);
+}
+
+.quiz-top h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700;
+}
+
+.quiz-score-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  background: var(--paper2);
+  color: var(--muted);
+  border: 1px solid var(--paper3);
+}
+
+.quiz-body { padding: 1.8rem; }
+
+.q-progress-bar {
+  height: 3px; background: var(--paper2); border-radius: 2px;
+  overflow: hidden; margin-bottom: 1.8rem;
+}
+
+.q-progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+.bio  .q-progress-fill { background: var(--bio); }
+.chem .q-progress-fill { background: var(--chem); }
+.phys .q-progress-fill { background: var(--phys); }
+
+.q-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--muted); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+
+.q-diff {
+  padding: 0.15rem 0.45rem; border-radius: 3px; font-size: 0.6rem;
+}
+
+.diff-mid  { background: rgba(184,134,11,0.12); color: var(--gold); }
+.diff-hard { background: var(--h-only-lt); color: var(--h-only); }
+.diff-calc { background: rgba(26,76,184,0.1); color: var(--phys); }
+
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 600; line-height: 1.55;
+  color: var(--ink); margin-bottom: 1.4rem;
+}
+
+.q-hint {
+  font-size: 0.82rem; color: var(--muted); font-style: italic;
+  margin-bottom: 1rem; font-weight: 300;
+}
+
+.q-opts { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.2rem; }
+
+.q-opt {
+  padding: 0.9rem 1.1rem;
+  border: 1.5px solid var(--paper3);
+  border-radius: 8px;
+  cursor: pointer; background: #fff;
+  font-size: 0.9rem; font-weight: 400;
+  color: var(--ink); text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.18s;
+  display: flex; align-items: flex-start; gap: 0.8rem;
+}
+
+.q-opt:hover:not(:disabled) { border-color: var(--ink); background: var(--paper); }
+.q-opt:disabled { cursor: default; }
+
+.q-opt.correct { border-color: var(--bio); background: var(--bio-lt); color: var(--bio); font-weight: 500; }
+.q-opt.wrong   { border-color: var(--chem); background: var(--chem-lt); color: var(--chem); }
+.q-opt.reveal  { border-color: var(--bio); background: var(--bio-lt); color: var(--bio); opacity: 0.6; }
+
+.opt-letter {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid currentColor; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+}
+
+.q-feedback {
+  padding: 0.7rem 1rem; border-radius: 6px;
+  font-size: 0.85rem; line-height: 1.6;
+  display: none; margin-bottom: 0.5rem;
+}
+.q-feedback.show { display: block; animation: fadeIn 0.25s; }
+.q-feedback.correct { background: var(--bio-lt); color: var(--bio); border-left: 3px solid var(--bio); }
+.q-feedback.wrong   { background: var(--chem-lt); color: var(--chem); border-left: 3px solid var(--chem); }
+
+.q-ms {
+  display: none; padding: 0.7rem 1rem;
+  background: rgba(184,134,11,0.07); border-left: 3px solid var(--gold);
+  border-radius: 4px; font-size: 0.82rem; line-height: 1.65;
+  font-family: 'DM Mono', monospace; color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.q-ms.show { display: block; animation: fadeIn 0.25s; }
+
+.quiz-footer {
+  padding: 1rem 1.8rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--paper2);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ══ BUTTONS ══ */
+.btn {
+  padding: 0.7rem 1.8rem; border-radius: 6px;
+  font-weight: 500; font-size: 0.88rem;
+  cursor: pointer; border: none; transition: all 0.18s;
+  font-family: 'DM Sans', sans-serif; letter-spacing: 0.2px;
+}
+
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-ink:hover { background: #2e2510; }
+
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-outline:hover { background: var(--paper2); }
+
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { filter: brightness(1.1); }
+
+.btn-sm { padding: 0.5rem 1.2rem; font-size: 0.82rem; }
+
+/* ══ RESULTS CARD ══ */
+.results-card {
+  display: none; padding: 2.5rem; text-align: center;
+}
+.results-card.show { display: block; animation: revealPanel 0.4s ease; }
+
+.results-ring {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: conic-gradient(var(--bio) var(--pct), var(--paper2) 0);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.results-ring::before {
+  content: ''; position: absolute;
+  width: 78px; height: 78px; background: #fff; border-radius: 50%;
+}
+
+.results-ring-num {
+  position: relative; z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; color: var(--ink);
+}
+
+.results-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;
+}
+
+.results-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+/* ══ FOOTER ══ */
+.site-footer {
+  position: relative; z-index: 1;
+  border-top: 2px solid var(--ink);
+  background: var(--ink); color: var(--paper);
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.2rem; color: var(--gold-lt);
+}
+
+.footer-note {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  color: rgba(245,240,232,0.35); text-transform: uppercase; letter-spacing: 2px;
+}
+
+.footer-tier {
+  background: var(--h-only); color: #fff;
+  padding: 0.3rem 0.8rem; border-radius: 4px;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ══ LEGEND ══ */
+.legend {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding: 0.8rem 1rem;
+  background: var(--paper2); border-radius: 6px;
+  border: 1px solid var(--paper3);
+}
+
+.legend-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 768px) {
+  .header-inner { padding: 0 1.2rem; }
+  .hero-inner, .app-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .hero-inner h1 { font-size: 2.5rem; }
+  .hero-banner::after { display: none; }
+  .section-intro { grid-template-columns: 1fr; }
+  .section-number { display: none; }
+  .header-right { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-crest">H</div>
+      <div class="logo-text">
+        <strong>GCSE Science</strong>
+        <span>Higher Tier</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-tab active-bio" onclick="switchSubject('bio',this)" id="tab-bio">🧬 Biology</button>
+      <button class="nav-tab" onclick="switchSubject('chem',this)" id="tab-chem">⚗️ Chemistry</button>
+      <button class="nav-tab" onclick="switchSubject('phys',this)" id="tab-phys">⚡ Physics</button>
+    </nav>
+    <div class="header-right">
+      <div class="xp-bar-wrap">
+        <span class="xp-label">Progress</span>
+        <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+        <span class="xp-label" id="xpPct">0%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero-banner">
+  <div class="hero-inner">
+    <div class="tier-badge">■ Higher Tier — Grades 4–9</div>
+    <h1>Science mastery<br>at <em>Higher</em> level.</h1>
+    <p class="hero-desc">Complete AQA / Edexcel / OCR Higher Tier coverage — every topic, every equation, every calculation method, with Higher-only content clearly marked.</p>
+    <div class="hero-meta">
+      <div class="hero-stat"><span class="val">24</span><span class="lbl">Topics</span></div>
+      <div class="hero-stat"><span class="val">60+</span><span class="lbl">Equations</span></div>
+      <div class="hero-stat"><span class="val">45</span><span class="lbl">Quiz Questions</span></div>
+      <div class="hero-stat"><span class="val">72</span><span class="lbl">Flashcards</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ APP BODY ═══════════════ -->
+<main class="app-body">
+
+  <!-- ══════════ BIOLOGY PANEL ══════════ -->
+  <div class="subject-panel active bio" id="panel-bio">
+
+    <div class="section-intro">
+      <div>
+        <h2 class="bio">Biology</h2>
+        <p>Higher tier Biology extends into complex genetics, hormonal control, and plant science — with more demanding 6-mark questions.</p>
+      </div>
+      <div class="section-number">B</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="tag tag-h">H</span> Higher Tier Only content</div>
+      <div class="legend-item"><span class="tag tag-calc">CALC</span> Calculation required</div>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div class="mode-toggle" id="bio-mode-toggle">
+      <button class="mode-btn active" onclick="setMode('bio','topics',this)">📚 Topics</button>
+      <button class="mode-btn" onclick="setMode('bio','flash',this)">🃏 Flashcards</button>
+      <button class="mode-btn" onclick="setMode('bio','quiz',this)">✏️ Quiz</button>
+    </div>
+
+    <!-- TOPICS VIEW -->
+    <div class="topics-view" id="bio-topics">
+      <div class="topics-list bio">
+
+        <!-- B1 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B1</span>
+            <div class="trig-emoji">🔬</div>
+            <div class="trig-text">
+              <span class="trig-title">Cell Biology & Division</span>
+              <span class="trig-sub">Mitosis, meiosis, cell cycle regulation, stem cells</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Core Concepts</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Eukaryotic vs prokaryotic structure in depth</li>
+                  <li><span class="dot bio"></span>Cell cycle: interphase (G1, S, G2) → mitosis → cytokinesis</li>
+                  <li><span class="dot bio"></span>Mitosis stages: prophase, metaphase, anaphase, telophase</li>
+                  <li><span class="dot bio"></span>Meiosis I and II — crossing over creates genetic variation</li>
+                  <li><span class="dot bio"></span>Embryonic vs adult stem cells and ethical considerations</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Cell cycle control — tumour suppressor genes, proto-oncogenes</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Therapeutic cloning — how and why</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Microscopy Calculations</h4>
+                <div class="eq-box">Magnification =
+  image size ÷ actual size
+
+Actual size =
+  image size ÷ magnification
+
+Eyepiece × objective =
+  total magnification
+
+Standard form:
+1 mm = 1000 μm = 1,000,000 nm
+
+Resolution limit:
+Light microscope: ~200 nm
+Electron microscope: ~0.1 nm</div>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ 6-Mark Tip</span>
+                  When comparing mitosis and meiosis: location, purpose, number of divisions, daughter cells (number + genotype), ploidy. Cover all 5 for full marks.
+                </div>
+              </div>
+              <div class="body-col">
+                <h4>Mark Scheme Points</h4>
+                <div class="mark-scheme">
+                  <span class="ms-label">Meiosis — 4-mark answer</span>
+                  <ul>
+                    <li>DNA replicates before meiosis I</li>
+                    <li>Homologous pairs separate in meiosis I</li>
+                    <li>Sister chromatids separate in meiosis II</li>
+                    <li>Crossing over at chiasmata in meiosis I creates new allele combinations</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B2</span>
+            <div class="trig-emoji">🫁</div>
+            <div class="trig-text">
+              <span class="trig-title">Organisation — Enzymes & Digestion</span>
+              <span class="trig-sub">Enzyme kinetics, digestive system, liver function</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Concepts</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Enzyme–substrate specificity: lock and key vs induced fit</li>
+                  <li><span class="dot bio"></span>Effect of pH, temperature, inhibitors on enzyme activity</li>
+                  <li><span class="dot bio"></span>Bile emulsification — increases surface area for lipase</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Competitive vs non-competitive inhibition</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Liver: deamination, glycogen storage, detoxification</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Interpreting rate of reaction graphs — initial rate calculation</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Calculations</h4>
+                <div class="eq-box">Rate of enzyme reaction:
+  Rate = 1 / time (s⁻¹)
+
+e.g. reaction completes in 25 s:
+  Rate = 1/25 = 0.04 s⁻¹
+
+BMI = mass (kg) / height² (m²)
+
+EAR (protein) =
+  0.6 × body mass (kg) = g/day
+
+Surface area (alveoli):
+  ~70 m² in adult lungs</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Strategy</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ Exam Tip</span>
+                  Non-competitive inhibitors change the SHAPE of the active site — they are NOT affected by increasing substrate concentration. Competitive inhibitors ARE outcompeted by more substrate.
+                </div>
+                <div class="mark-scheme" style="margin-top:0.8rem">
+                  <span class="ms-label">Bile emulsification — 3 marks</span>
+                  <ul>
+                    <li>Bile emulsifies fat into small droplets</li>
+                    <li>Increases surface area for lipase</li>
+                    <li>Faster rate of fat digestion</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B3 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B3</span>
+            <div class="trig-emoji">🦠</div>
+            <div class="trig-text">
+              <span class="trig-title">Infection, Immunity & Monoclonal Antibodies</span>
+              <span class="trig-sub">Immune response, vaccines, monoclonal antibody technology</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Concepts</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Specific immune response: B-cells, T-cells, antibody production</li>
+                  <li><span class="dot bio"></span>Memory cells → secondary immune response (faster, stronger)</li>
+                  <li><span class="dot bio"></span>Vaccination: herd immunity threshold</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Monoclonal antibody production (hybridoma method)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Uses: pregnancy tests, cancer diagnosis, targeted therapy</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Evaluation of clinical trial phases (I, II, III)</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Monoclonal Antibody Process</h4>
+                <div class="eq-box">Step 1: Inject antigen into mouse
+Step 2: Isolate B-lymphocytes
+  (make specific antibody)
+Step 3: Fuse with tumour cell
+  → Hybridoma cell
+Step 4: Clone hybridoma cells
+Step 5: Collect monoclonal antibodies
+
+Advantage: highly specific to one
+  type of antigen (target)</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ 6-Mark Question</span>
+                  Describe and explain how a vaccination gives long-term immunity: antigen introduced → phagocytosis → antigen presented → T-cells activated → B-cells stimulated → antibodies produced → memory cells retained → faster/larger response on re-exposure.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B4 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B4</span>
+            <div class="trig-emoji">🌱</div>
+            <div class="trig-text">
+              <span class="trig-title">Bioenergetics — Photosynthesis & Respiration</span>
+              <span class="trig-sub">Light reactions, Calvin cycle, ATP synthesis, oxygen debt</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Core Equations</h4>
+                <div class="eq-box">Photosynthesis:
+6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
+(requires light energy, chlorophyll)
+
+Aerobic respiration:
+C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP
+
+Anaerobic (animals):
+Glucose → lactic acid (+ small ATP)
+
+Anaerobic (yeast):
+Glucose → ethanol + CO₂ (+ small ATP)
+
+RQ = CO₂ produced / O₂ consumed
+Carbs: RQ = 1.0 | Fat: RQ ≈ 0.7</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher-Tier Extensions</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Light-dependent reaction: chloroplast thylakoids, splitting of water (photolysis), ATP + NADPH produced</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Light-independent reaction (Calvin cycle): CO₂ fixed by RuBisCO, G3P produced, glucose synthesised</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Limiting factors in photosynthesis — graphical interpretation</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Oxygen debt — lactic acid removed by oxidation to CO₂ + H₂O</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ Graph Questions</span>
+                  On a rate vs. light intensity graph: the flat part means a factor other than light is limiting (CO₂ or temperature). Adding CO₂ at the plateau will increase the rate further. This is the key 4-mark interpretation.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B5 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B5</span>
+            <div class="trig-emoji">🧠</div>
+            <div class="trig-text">
+              <span class="trig-title">Homeostasis — Hormones & Nervous System</span>
+              <span class="trig-sub">Endocrine system, kidney function, fertility treatment</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Content</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Negative feedback in blood glucose, temperature, water</li>
+                  <li><span class="dot bio"></span>Insulin (β-cells) lowers glucose; glucagon (α-cells) raises it</li>
+                  <li><span class="dot bio"></span>Kidney: filtration → selective reabsorption → urine formation</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> ADH mechanism — collecting duct permeability, aquaporins</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Kidney dialysis vs transplant — evaluation</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> FSH, LH, oestrogen, progesterone in menstrual cycle</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> IVF procedure and use of FSH/LH</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Plant hormones: auxin, gibberellins, ethylene uses</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Kidney Structure</h4>
+                <div class="eq-box">Nephron stages:
+1. Glomerulus (Bowman's cap.)
+   → ultrafiltration under pressure
+   Filtered: water, urea, glucose, ions
+
+2. Proximal convoluted tubule
+   → selective reabsorption
+   (glucose, some ions, water)
+
+3. Loop of Henle (H tier)
+   → creates osmotic gradient
+   in medulla
+
+4. Collecting duct
+   → ADH controls H₂O reabsorption
+   → concentrated/dilute urine</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ ADH Higher Tip</span>
+                  High blood solute concentration → hypothalamus detects → posterior pituitary releases more ADH → collecting duct more permeable → more water reabsorbed → small volume of concentrated urine. This is a classic 4-marker.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B6 -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B6</span>
+            <div class="trig-emoji">🧬</div>
+            <div class="trig-text">
+              <span class="trig-title">Inheritance, Variation & Evolution</span>
+              <span class="trig-sub">Dihybrid crosses, sex-linkage, Hardy-Weinberg, speciation</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Genetics Content</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Monohybrid + dihybrid crosses with Punnett squares</li>
+                  <li><span class="dot bio"></span>Codominance (e.g. blood groups — I^A, I^B, i alleles)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Sex-linked inheritance (e.g. haemophilia, colour blindness)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Pedigree diagram analysis</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Mutation types: substitution, deletion, insertion → frameshift</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Speciation — allopatric vs sympatric</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Key Crosses</h4>
+                <div class="eq-box">Dihybrid ratio (RrYy × RrYy):
+9 R_Y_ : 3 R_yy : 3 rrY_ : 1 rryy
+
+ABO Blood Groups:
+I^A I^A or I^A i → blood group A
+I^B I^B or I^B i → blood group B
+I^A I^B → blood group AB (codominant)
+ii → blood group O
+
+Sex-linked (carrier female):
+X^H X^h × X^H Y
+→ 1/4 affected male possible</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ Sex-Linkage</span>
+                  In sex-linked conditions, females can be carriers (X^H X^h) — they have the allele but don't show the phenotype. Males (X^h Y) with ONE recessive allele ARE affected. Always use correct X^H notation in exam.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B7 + B8 condensed -->
+        <div class="topic-item bio">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">B7</span>
+            <div class="trig-emoji">🌍</div>
+            <div class="trig-text">
+              <span class="trig-title">Ecology — Trophic Levels & Population Dynamics</span>
+              <span class="trig-sub">Biomass calculations, population curves, biodiversity indices</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Concepts</h4>
+                <ul class="kp-list">
+                  <li><span class="dot bio"></span>Trophic levels 1–4; energy transfer (~10% between levels)</li>
+                  <li><span class="dot bio"></span>Pyramids of biomass — always bottom-heavy</li>
+                  <li><span class="dot bio"></span>Population growth curves: lag, log, stationary, death phases</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Predator-prey oscillations — graphical analysis</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Species richness vs evenness; Simpson's diversity index</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Eutrophication mechanism (fertiliser run-off → algal bloom → BOD increase)</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Simpson's Index</h4>
+                <div class="eq-box">Simpson's Diversity Index:
+D = 1 − [Σn(n−1) / N(N−1)]
+
+n = number of individuals of each sp.
+N = total number of all individuals
+
+D closer to 1 = greater diversity
+D closer to 0 = lower diversity
+
+Lincoln Index (mark-recapture):
+N = (M × R) / C
+M = marked in 1st sample
+R = total in 2nd sample
+C = marked recaptured</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip bio">
+                  <span class="et-label">⭐ Eutrophication Chain</span>
+                  Fertiliser → leaches into water → nitrates → algal bloom → light blocked → aquatic plants die → decomposers increase → BOD increases → oxygen depletes → fish die. 6 marks = 6 sequential steps — don't skip any.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end topics-list -->
+    </div><!-- end bio-topics -->
+
+    <!-- FLASHCARD VIEW -->
+    <div class="flashcard-view bio" id="bio-flash">
+      <div class="flashcard-deck">
+        <div class="flashcard" onclick="flipCard('bio')" id="bio-card">
+          <div class="fc-front">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--bio-lt);color:var(--bio);border:1px solid var(--bio-mid)">Biology Higher</span>
+            <div class="fc-question" id="bio-fc-q">Loading...</div>
+            <div class="fc-tap">— tap to reveal answer —</div>
+          </div>
+          <div class="fc-back">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--bio-lt);color:var(--bio);border:1px solid var(--bio-mid)">Answer</span>
+            <div class="fc-answer" id="bio-fc-a">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav bio">
+        <button class="btn btn-outline btn-sm" onclick="prevCard('bio')">← Prev</button>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem">
+          <span class="fc-counter" id="bio-fc-counter">1 / 12</span>
+          <div class="fc-dots bio" id="bio-fc-dots"></div>
+        </div>
+        <button class="btn btn-ink btn-sm" onclick="nextCard('bio')">Next →</button>
+      </div>
+    </div>
+
+    <!-- QUIZ VIEW -->
+    <div class="flashcard-view" id="bio-quiz">
+      <div class="quiz-shell bio">
+        <div class="quiz-top">
+          <h3>Biology Higher Quiz</h3>
+          <span class="quiz-score-pill" id="bio-q-score">Score: 0 / 9</span>
+        </div>
+        <div class="quiz-body">
+          <div class="q-progress-bar bio"><div class="q-progress-fill" id="bio-qprog" style="width:11%"></div></div>
+          <div id="bio-q-render"></div>
+        </div>
+        <div class="quiz-footer">
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted)" id="bio-q-nav-label">Q1 of 9</span>
+          <div style="display:flex;gap:0.5rem">
+            <button class="btn btn-outline btn-sm" onclick="qPrev('bio')">← Back</button>
+            <button class="btn btn-ink btn-sm" onclick="qNext('bio')">Next →</button>
+          </div>
+        </div>
+        <div class="results-card" id="bio-results">
+          <div class="results-ring" id="bio-rring"><span class="results-ring-num" id="bio-rnum">0/9</span></div>
+          <div class="results-title" id="bio-rtitle">Quiz Complete!</div>
+          <div class="results-sub" id="bio-rsub">Loading...</div>
+          <button class="btn btn-ink" onclick="resetQuiz('bio')">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end bio panel -->
+
+
+  <!-- ══════════ CHEMISTRY PANEL ══════════ -->
+  <div class="subject-panel chem" id="panel-chem">
+
+    <div class="section-intro">
+      <div>
+        <h2 class="chem">Chemistry</h2>
+        <p>Higher Chemistry includes demanding calculation work, electrolysis half-equations, organic mechanisms, and thermodynamic reasoning.</p>
+      </div>
+      <div class="section-number">C</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="tag tag-h">H</span> Higher Tier Only</div>
+      <div class="legend-item"><span class="tag tag-calc">CALC</span> Calculation required</div>
+    </div>
+
+    <div class="mode-toggle" id="chem-mode-toggle">
+      <button class="mode-btn active" onclick="setMode('chem','topics',this)">📚 Topics</button>
+      <button class="mode-btn" onclick="setMode('chem','flash',this)">🃏 Flashcards</button>
+      <button class="mode-btn" onclick="setMode('chem','quiz',this)">✏️ Quiz</button>
+    </div>
+
+    <div class="topics-view" id="chem-topics">
+      <div class="topics-list chem">
+
+        <!-- C1 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C1</span>
+            <div class="trig-emoji">⚛️</div>
+            <div class="trig-text">
+              <span class="trig-title">Atomic Structure & Electronic Configuration</span>
+              <span class="trig-sub">Orbitals, ionisation energy, emission spectra</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Core Content</h4>
+                <ul class="kp-list">
+                  <li><span class="dot chem"></span>Sub-atomic particle masses and charges (relative)</li>
+                  <li><span class="dot chem"></span>Electronic configuration using shells (2,8,8,2…)</li>
+                  <li><span class="dot chem"></span>Isotopes — same proton number, different neutron number</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Relative atomic mass from isotope abundance: Ar = Σ(mass × abundance)/100</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Electron shells → energy levels; emission spectra from transitions</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Flame tests: Li=red, Na=yellow, K=lilac, Ca=orange-red, Cu=blue-green</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Calculation Methods</h4>
+                <div class="eq-box">Relative atomic mass:
+Ar = Σ(isotope mass × % abundance)
+         ÷ 100
+
+e.g. Chlorine:
+  (35 × 75) + (37 × 25) = 2625 + 925
+  = 3550 ÷ 100 = 35.5 ✓
+
+Molar mass = Ar or Mr in g/mol
+
+Number of moles = mass / Mr
+
+Number of particles =
+  moles × 6.02 × 10²³ (Avogadro)</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Isotope Calculation</span>
+                  Always show the full working: multiply each isotope mass by its percentage abundance, sum them, and divide by 100. Show units throughout. Losing the ÷100 step is the most common error.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C2 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C2</span>
+            <div class="trig-emoji">🔗</div>
+            <div class="trig-text">
+              <span class="trig-title">Bonding, Structure & Properties of Matter</span>
+              <span class="trig-sub">Ionic lattice, giant covalent, metallic — properties explained</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Structure Types</h4>
+                <ul class="kp-list">
+                  <li><span class="dot chem"></span>Ionic lattice: high MP, conducts when molten or in solution</li>
+                  <li><span class="dot chem"></span>Simple covalent: low MP (weak IMFs), non-conductor</li>
+                  <li><span class="dot chem"></span>Giant covalent: very high MP, most non-conductors (except graphite)</li>
+                  <li><span class="dot chem"></span>Metallic: high MP, malleable, conducts — delocalised electrons</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Graphene — single atom layer, conducts, stronger than steel</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Nanoparticles — size 1–100 nm, large SA:V ratio, novel properties</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Polymer properties: thermosoftening vs thermosetting — structure explanation</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>IMF Strength Order</h4>
+                <div class="eq-box">Intermolecular forces (weakest → strongest):
+1. London dispersion (van der Waals)
+   → all molecules, increases with
+   more electrons (larger molecules)
+2. Permanent dipole-dipole
+   → polar molecules (e.g. HCl)
+3. Hydrogen bonds
+   → N-H, O-H, F-H containing
+   (e.g. H₂O, NH₃, HF)
+
+∴ H₂O has unusually high BP
+  due to H-bonding (100°C not −80°C)</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Property Questions</span>
+                  Always link property → structure → bonding. "High melting point because it has a giant ionic lattice structure with strong electrostatic forces of attraction between oppositely charged ions, requiring lots of energy to overcome."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C3 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C3</span>
+            <div class="trig-emoji">⚗️</div>
+            <div class="trig-text">
+              <span class="trig-title">Quantitative Chemistry</span>
+              <span class="trig-sub">Titrations, molar calculations, gas volumes, empirical formulas</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Calculation Toolkit</h4>
+                <div class="eq-box">Moles = mass / Mr
+Moles = conc × volume (dm³)
+Moles = volume (dm³) / 24 (at RTP)
+
+% yield = actual/theoretical × 100
+Atom economy = desired Mr/total Mr × 100
+
+Empirical formula: divide by smallest
+  ratio of moles
+
+Molecular formula:
+  Mr(molecular) / Mr(empirical) = n
+  multiply empirical by n</div>
+              </div>
+              <div class="body-col">
+                <h4>Titration Calculation</h4>
+                <div class="eq-box">Example:
+25.0 cm³ of NaOH, conc = ?
+Titre of HCl: 22.50 cm³, 0.100 mol/dm³
+
+Step 1: moles HCl =
+  0.100 × (22.50/1000) = 0.00225 mol
+
+Step 2: moles NaOH = moles HCl = 0.00225
+(1:1 ratio)
+
+Step 3: conc NaOH =
+  0.00225 / (25.0/1000)
+  = 0.090 mol/dm³</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Higher Calc Strategy</span>
+                  ALWAYS convert cm³ to dm³ (÷1000). Write the molar ratio from the equation explicitly. Show every step. In a 4-mark calculation: equation (1), moles of known (1), moles of unknown (1), final answer with units (1).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C4 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C4</span>
+            <div class="trig-emoji">⚡</div>
+            <div class="trig-text">
+              <span class="trig-title">Electrolysis — Half Equations & Products</span>
+              <span class="trig-sub">Electrode reactions, half-equations, industrial electrolysis</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Half Equations</h4>
+                <div class="eq-box">At cathode (reduction, gain e⁻):
+  Cu²⁺ + 2e⁻ → Cu
+  2H⁺ + 2e⁻ → H₂
+  2H₂O + 2e⁻ → H₂ + 2OH⁻ (dilute)
+
+At anode (oxidation, lose e⁻):
+  2Cl⁻ → Cl₂ + 2e⁻
+  4OH⁻ → O₂ + 2H₂O + 4e⁻
+  2H₂O → O₂ + 4H⁺ + 4e⁻
+
+OILRIG: Oxidation Is Loss,
+        Reduction Is Gain (of electrons)</div>
+              </div>
+              <div class="body-col">
+                <h4>Industrial Examples</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Brine electrolysis: H₂ at cathode, Cl₂ at anode, NaOH in solution</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Aluminium extraction from molten Al₂O₃ (bauxite) — very high energy cost</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Electroplating — object as cathode, plating metal as anode</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Copper purification: impure anode dissolves, pure copper deposits at cathode</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Half Equation Rules</span>
+                  1. Balance the main element. 2. Balance charge by adding electrons. 3. Check: left electrons should cancel right electrons when combining. Reduction: always add electrons to the LEFT side. Oxidation: electrons on the RIGHT side.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C5 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C5</span>
+            <div class="trig-emoji">🔥</div>
+            <div class="trig-text">
+              <span class="trig-title">Energy Changes & Bond Calculations</span>
+              <span class="trig-sub">Bond enthalpies, reaction profiles, Hess's law</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Bond Energy Calculations</h4>
+                <div class="eq-box">ΔH = Σ(bonds broken) − Σ(bonds made)
+
+Example: H₂ + Cl₂ → 2HCl
+Bonds broken: H-H (436) + Cl-Cl (243)
+             = +679 kJ/mol
+Bonds made: 2 × H-Cl (432) = 864 kJ/mol
+
+ΔH = 679 − 864 = −185 kJ/mol
+(exothermic, negative ΔH ✓)
+
+Remember: breaking bonds REQUIRES
+energy (endothermic input)</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Extensions</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Activation energy from reaction profile diagram</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Catalyst lowers Ea — shown on reaction profile</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Hydrogen fuel cells: 2H₂ + O₂ → 2H₂O (overall), with half equations</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Comparing fuel cells to batteries — advantages/disadvantages</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Bond Calc Errors</span>
+                  Most errors: forgetting to multiply bond energies by stoichiometry. If you break 2 mol of H-Cl, that's 2 × 432 = 864. Always multiply by coefficient from equation before summing.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C6 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C6</span>
+            <div class="trig-emoji">⚖️</div>
+            <div class="trig-text">
+              <span class="trig-title">Rates, Equilibrium & Le Chatelier's Principle</span>
+              <span class="trig-sub">Kc expression, equilibrium calculations, Haber & Contact processes</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Le Chatelier & Equilibrium</h4>
+                <ul class="kp-list">
+                  <li><span class="dot chem"></span>Increasing concentration of reactant → shift right (more product)</li>
+                  <li><span class="dot chem"></span>Increasing pressure → shift to side with fewer gas moles</li>
+                  <li><span class="dot chem"></span>Increasing temperature → shift in endothermic direction</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Kc expression: for aA + bB ⇌ cC + dD, Kc = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Kc > 1: equilibrium favours products; Kc < 1: reactants favoured</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Temperature changes Kc value; pressure and catalyst do NOT</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Industrial Processes</h4>
+                <div class="eq-box">Haber Process:
+N₂(g) + 3H₂(g) ⇌ 2NH₃(g)  ΔH = −92 kJ/mol
+Conditions: 450°C, 200 atm, Fe catalyst
+Compromise: higher T → faster rate
+  but lower equilibrium yield
+
+Contact Process (H₂SO₄):
+2SO₂ + O₂ ⇌ 2SO₃  (V₂O₅ catalyst, 450°C)
+SO₃ + H₂SO₄ → H₂S₂O₇ (oleum)
+H₂S₂O₇ + H₂O → 2H₂SO₄</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Kc Questions</span>
+                  Pure solids and liquids are NOT included in Kc expressions. Only gases and aqueous species appear. Units of Kc depend on the equation — always derive them from the expression itself.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C7 + C8 -->
+        <div class="topic-item chem">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">C7</span>
+            <div class="trig-emoji">🧪</div>
+            <div class="trig-text">
+              <span class="trig-title">Organic Chemistry — Mechanisms & Polymers</span>
+              <span class="trig-sub">Addition, substitution, condensation polymerisation; functional groups</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Reaction Types</h4>
+                <ul class="kp-list">
+                  <li><span class="dot chem"></span>Combustion: alkane + O₂ → CO₂ + H₂O (complete)</li>
+                  <li><span class="dot chem"></span>Substitution (alkanes + Cl₂/UV): CH₄ + Cl₂ → CH₃Cl + HCl</li>
+                  <li><span class="dot chem"></span>Addition (alkenes): electrophilic addition to C=C double bond</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Fermentation: glucose → ethanol + CO₂ (yeast, 25–37°C)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Hydration of ethene: C₂H₄ + H₂O → C₂H₅OH (acid catalyst)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Condensation polymerisation: monomers with 2 functional groups → polymer + small molecule (H₂O or HCl)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Nylon (polyamide), Terylene (polyester) — structure and properties</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Functional Groups</h4>
+                <div class="eq-box">Alkane: C-C single bonds, -ane
+Alkene: C=C double bond, -ene
+Alcohol: -OH group, -ol
+Carboxylic acid: -COOH, -anoic acid
+Aldehyde: -CHO
+Ketone: C=O (not terminal)
+Ester: -COO- linkage (from acid+alcohol)
+Amide: -CO-NH- (in polyamides)
+
+Ester formation (condensation):
+R-COOH + R'-OH → R-COO-R' + H₂O
+(acid catalyst, reversible)</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip chem">
+                  <span class="et-label">⭐ Polymer Questions</span>
+                  For addition polymerisation: show the C=C becoming C-C and draw the repeat unit with square brackets and subscript n. For condensation polymerisation: identify the two functional groups that react and the small molecule eliminated.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end topics-list chem -->
+    </div>
+
+    <!-- CHEM FLASHCARD VIEW -->
+    <div class="flashcard-view chem" id="chem-flash">
+      <div class="flashcard-deck">
+        <div class="flashcard" onclick="flipCard('chem')" id="chem-card">
+          <div class="fc-front">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--chem-lt);color:var(--chem);border:1px solid var(--chem-mid)">Chemistry Higher</span>
+            <div class="fc-question" id="chem-fc-q">Loading...</div>
+            <div class="fc-tap">— tap to reveal answer —</div>
+          </div>
+          <div class="fc-back">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--chem-lt);color:var(--chem);border:1px solid var(--chem-mid)">Answer</span>
+            <div class="fc-answer" id="chem-fc-a">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav chem">
+        <button class="btn btn-outline btn-sm" onclick="prevCard('chem')">← Prev</button>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem">
+          <span class="fc-counter" id="chem-fc-counter">1 / 12</span>
+          <div class="fc-dots chem" id="chem-fc-dots"></div>
+        </div>
+        <button class="btn btn-ink btn-sm" onclick="nextCard('chem')">Next →</button>
+      </div>
+    </div>
+
+    <!-- CHEM QUIZ VIEW -->
+    <div class="flashcard-view" id="chem-quiz">
+      <div class="quiz-shell chem">
+        <div class="quiz-top">
+          <h3>Chemistry Higher Quiz</h3>
+          <span class="quiz-score-pill" id="chem-q-score">Score: 0 / 9</span>
+        </div>
+        <div class="quiz-body">
+          <div class="q-progress-bar chem"><div class="q-progress-fill" id="chem-qprog" style="width:11%"></div></div>
+          <div id="chem-q-render"></div>
+        </div>
+        <div class="quiz-footer">
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted)" id="chem-q-nav-label">Q1 of 9</span>
+          <div style="display:flex;gap:0.5rem">
+            <button class="btn btn-outline btn-sm" onclick="qPrev('chem')">← Back</button>
+            <button class="btn btn-ink btn-sm" onclick="qNext('chem')">Next →</button>
+          </div>
+        </div>
+        <div class="results-card" id="chem-results">
+          <div class="results-ring" id="chem-rring"><span class="results-ring-num" id="chem-rnum">0/9</span></div>
+          <div class="results-title" id="chem-rtitle">Quiz Complete!</div>
+          <div class="results-sub" id="chem-rsub"></div>
+          <button class="btn btn-ink" onclick="resetQuiz('chem')">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end chem panel -->
+
+
+  <!-- ══════════ PHYSICS PANEL ══════════ -->
+  <div class="subject-panel phys" id="panel-phys">
+
+    <div class="section-intro">
+      <div>
+        <h2 class="phys">Physics</h2>
+        <p>Higher Physics demands multi-step calculations, vector components, and deeper understanding of fields, waves, and nuclear processes.</p>
+      </div>
+      <div class="section-number">P</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="tag tag-h">H</span> Higher Tier Only</div>
+      <div class="legend-item"><span class="tag tag-calc">CALC</span> Calculation required</div>
+    </div>
+
+    <div class="mode-toggle" id="phys-mode-toggle">
+      <button class="mode-btn active" onclick="setMode('phys','topics',this)">📚 Topics</button>
+      <button class="mode-btn" onclick="setMode('phys','flash',this)">🃏 Flashcards</button>
+      <button class="mode-btn" onclick="setMode('phys','quiz',this)">✏️ Quiz</button>
+    </div>
+
+    <div class="topics-view" id="phys-topics">
+      <div class="topics-list phys">
+
+        <!-- P1 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P1</span>
+            <div class="trig-emoji">⚡</div>
+            <div class="trig-text">
+              <span class="trig-title">Electricity — Circuits & Charge</span>
+              <span class="trig-sub">Ohm's law, I-V characteristics, power, domestic circuits</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Core Equations</h4>
+                <div class="eq-box">V = IR  (Ohm's Law)
+P = IV = I²R = V²/R
+E = Pt = QV
+Q = It (charge = current × time)
+
+Series: R_T = R₁ + R₂ + R₃
+Parallel: 1/R_T = 1/R₁ + 1/R₂ + 1/R₃
+
+Energy from mains:
+E = P × t  (kWh = kW × hours)
+Cost = E × price per kWh</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Extensions</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Internal resistance: EMF (ε) = I(R + r); terminal p.d. = EMF − Ir</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> I-V graph analysis — gradient = 1/R; non-ohmic components (diode, filament)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> LDR and thermistor — how resistance varies with conditions</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Alternating current: peak voltage vs rms voltage; Vᵣₘₛ = V_peak/√2</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Internal Resistance</span>
+                  The "lost volts" = Ir (drop across internal resistance). The terminal p.d. is always LESS than the EMF when current flows. At zero current, terminal p.d. = EMF. Plot a V–I graph: y-intercept = EMF, negative gradient = r.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P2 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P2</span>
+            <div class="trig-emoji">🏃</div>
+            <div class="trig-text">
+              <span class="trig-title">Forces & Motion — Dynamics & Kinematics</span>
+              <span class="trig-sub">SUVAT equations, momentum, Newton's laws, circular motion</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>SUVAT Equations</h4>
+                <div class="eq-box">s = displacement (m)
+u = initial velocity (m/s)
+v = final velocity (m/s)
+a = acceleration (m/s²)
+t = time (s)
+
+v = u + at
+s = ut + ½at²
+v² = u² + 2as
+s = ½(u+v)t
+
+Free fall: a = g = 9.8 m/s² (≈10)
+Air resistance → terminal velocity</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Forces Content</h4>
+                <ul class="kp-list">
+                  <li><span class="dot phys"></span>Newton's 3 laws — action-reaction pairs are equal and opposite</li>
+                  <li><span class="dot phys"></span>Momentum: p = mv; conservation in collisions</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Impulse = FΔt = Δ(mv); area under F-t graph</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Vector resolution — horizontal/vertical components</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Circular motion: centripetal force = mv²/r (directed inward)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Elastic vs inelastic collisions — KE conservation check</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ SUVAT Strategy</span>
+                  List all known values first (s, u, v, a, t). Identify which two you need to find or use. Pick the equation that connects three known values and one unknown. Always check: if thrown upward, at max height, v = 0.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P3 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P3</span>
+            <div class="trig-emoji">🌊</div>
+            <div class="trig-text">
+              <span class="trig-title">Waves — Properties, Optics & EM Spectrum</span>
+              <span class="trig-sub">Refraction, total internal reflection, Doppler effect, lenses</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Wave Equations</h4>
+                <div class="eq-box">v = fλ  (wave speed)
+T = 1/f  (period)
+f = 1/T
+
+Snell's Law (refraction):
+n₁ sin θ₁ = n₂ sin θ₂
+
+Refractive index: n = c / v
+  (c = 3×10⁸ m/s in vacuum)
+
+Critical angle:
+sin C = 1/n  (when n₂ < n₁)
+
+Lens equation (H):
+1/f = 1/u + 1/v
+magnification = v/u = image height/object height</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Content</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Total internal reflection when angle > critical angle</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Optical fibres — TIR, endoscopes, data transmission</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Doppler effect — source moving toward observer: higher f, shorter λ (blue-shift); moving away: lower f, longer λ (red-shift)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Converging and diverging lenses — ray diagrams, focal length</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> EM wave hazards — ionising vs non-ionising radiation</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Refraction Questions</span>
+                  When light enters a denser medium it slows down and bends TOWARD the normal (angle decreases). When it enters a less dense medium it speeds up and bends AWAY from normal. The frequency NEVER changes when light refracts.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P4 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P4</span>
+            <div class="trig-emoji">☢️</div>
+            <div class="trig-text">
+              <span class="trig-title">Nuclear Physics — Radioactivity & Fission/Fusion</span>
+              <span class="trig-sub">Half-life calculations, nuclear equations, mass-energy equivalence</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Nuclear Equations</h4>
+                <div class="eq-box">α decay: ²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂He
+β⁻ decay: ¹⁴₆C → ¹⁴₇N + ⁰₋₁e + ν̄
+β⁺ decay (H): ²³Na → ²³Ne + ⁰₊₁e + ν
+γ emission: no change in mass/atomic no.
+
+Conservation laws:
+  Atomic number: must balance
+  Mass number: must balance
+
+Half-life calculation:
+  N = N₀ × (½)ⁿ  where n = no. of t₁/₂
+  Activity ∝ number of nuclei</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher — Nuclear Energy</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Fission: neutron absorbed by U-235 → unstable → splits into smaller nuclei + 2–3 neutrons + γ radiation</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Chain reaction: moderated by control rods (absorb neutrons), moderated by water</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Fusion: ²H + ³H → ⁴He + n + energy; requires extremely high temp/pressure</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Mass defect → binding energy: E = mc² (mass converted to energy)</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Half-Life Graphs</span>
+                  From a graph: find the time for activity to halve — that's the half-life. Repeat to check consistency. After 3 half-lives, activity = 1/8 of original. After n half-lives: activity = original × (½)ⁿ.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P5 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P5</span>
+            <div class="trig-emoji">🧲</div>
+            <div class="trig-text">
+              <span class="trig-title">Magnetism, Electromagnetism & Transformers</span>
+              <span class="trig-sub">Motor effect, induction, transformer calculations, Fleming's rules</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Equations</h4>
+                <div class="eq-box">Motor force: F = BIL
+(B = field, I = current, L = length)
+
+Transformer: Vₛ/Vₚ = Nₛ/Nₚ
+(for ideal transformer)
+
+Power in = Power out (ideal):
+IₚVₚ = IₛVₛ
+
+Efficiency = (Iₛ × Vₛ)/(Iₚ × Vₚ) × 100%
+
+EMF induced ∝ rate of change of
+  flux linkage (Faraday's law)</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Extensions</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Lenz's law: induced current opposes the change causing it</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> AC generator: rotating coil in magnetic field; slip rings</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> National Grid: step-up transformer near power station (↑V, ↓I reduces I²R losses), step-down before homes</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Fleming's right-hand rule for generators; left-hand for motors</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Transformer Calc</span>
+                  If Vₛ/Vₚ = Nₛ/Nₚ, and power is conserved: a step-up transformer that doubles voltage must halve current. Emphasise WHY high voltage reduces energy loss in transmission: P_loss = I²R, so halving I reduces losses by 75%.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P6 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P6</span>
+            <div class="trig-emoji">🔋</div>
+            <div class="trig-text">
+              <span class="trig-title">Energy — Thermodynamics & Efficiency</span>
+              <span class="trig-sub">Specific heat capacity, latent heat, gas laws, energy efficiency</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span><span class="tag tag-calc">CALC</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Core Equations</h4>
+                <div class="eq-box">E = mcΔT  (specific heat capacity)
+  c(water) = 4,200 J/kg°C
+
+E = mL  (latent heat)
+  Lf(water) = 334,000 J/kg
+  Lv(water) = 2,260,000 J/kg
+
+Efficiency = useful out / total in (× 100%)
+
+P = E/t = Fv (power)
+
+Pressure × Volume = constant (Boyle's)
+  p₁V₁ = p₂V₂  (at constant T)
+
+p/T = constant (Pressure law)
+  p₁/T₁ = p₂/T₂  (T in Kelvin!)</div>
+              </div>
+              <div class="body-col">
+                <h4>Higher Extensions</h4>
+                <ul class="kp-list">
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Heating curve — flat sections during state changes (latent heat)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Kinetic model of gases: pressure explained by particle collisions with walls</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Absolute zero (0 K) — no kinetic energy; extrapolation of p-T graphs</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Work done on a gas = pΔV; first law of thermodynamics</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Latent Heat</span>
+                  During a change of state, temperature does NOT change even though energy is being supplied. Energy breaks/forms intermolecular bonds. This produces the flat sections on heating/cooling curves. Must state: "energy breaks intermolecular bonds" for mark.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- P7 -->
+        <div class="topic-item phys">
+          <button class="topic-trigger" onclick="toggleItem(this.parentElement)">
+            <span class="trig-num">P7</span>
+            <div class="trig-emoji">🌌</div>
+            <div class="trig-text">
+              <span class="trig-title">Space Physics — Stellar Evolution & Cosmology</span>
+              <span class="trig-sub">Red-shift, Big Bang evidence, star life cycles, gravitational fields</span>
+            </div>
+            <div class="trig-tags"><span class="tag tag-h">H</span></div>
+            <span class="trig-arrow">▶</span>
+          </button>
+          <div class="topic-body">
+            <div class="body-inner">
+              <div class="body-col">
+                <h4>Key Concepts</h4>
+                <ul class="kp-list">
+                  <li><span class="dot phys"></span>Solar System → Milky Way → Local Group → Universe</li>
+                  <li><span class="dot phys"></span>Star lifecycle: nebula → main sequence → red giant → white dwarf (sun-mass)</li>
+                  <li><span class="dot phys"></span>Massive star: supergiant → supernova → neutron star or black hole</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Nuclear fusion in stars: H → He; energy radiated as light</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Red-shift quantification: Δλ/λ ≈ v/c (Hubble's Law: v = H₀d)</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> CMB radiation — uniform microwave background from early universe</li>
+                  <li class="h-only"><span class="dot h-dot"></span><strong>H:</strong> Dark matter and dark energy — observational evidence, open questions</li>
+                </ul>
+              </div>
+              <div class="body-col">
+                <h4>Red-Shift Equations</h4>
+                <div class="eq-box">Red-shift:
+z = Δλ / λ₀ ≈ v/c
+
+Hubble's Law:
+v = H₀ × d
+H₀ ≈ 70 km/s/Mpc
+
+Age of universe ≈ 1/H₀ ≈ 13.8 billion years
+
+Evidence for Big Bang:
+1. All galaxies show red-shift
+2. More distant = greater red-shift
+3. CMB radiation (2.7 K)
+4. Abundance of light elements (H, He)</div>
+              </div>
+              <div class="body-col">
+                <h4>Exam Tip</h4>
+                <div class="exam-tip phys">
+                  <span class="et-label">⭐ Cosmology Questions</span>
+                  For "evidence for the Big Bang" — always mention red-shift (galaxies moving away) AND the Cosmic Microwave Background radiation as independent lines of evidence. Two separate pieces of evidence = 2 marks minimum.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end topics-list phys -->
+    </div><!-- end phys-topics -->
+
+    <!-- PHYS FLASHCARD VIEW -->
+    <div class="flashcard-view phys" id="phys-flash">
+      <div class="flashcard-deck">
+        <div class="flashcard" onclick="flipCard('phys')" id="phys-card">
+          <div class="fc-front">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--phys-lt);color:var(--phys);border:1px solid var(--phys-mid)">Physics Higher</span>
+            <div class="fc-question" id="phys-fc-q">Loading...</div>
+            <div class="fc-tap">— tap to reveal answer —</div>
+          </div>
+          <div class="fc-back">
+            <span class="fc-subject-tag tag tag-h" style="background:var(--phys-lt);color:var(--phys);border:1px solid var(--phys-mid)">Answer</span>
+            <div class="fc-answer" id="phys-fc-a">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav phys">
+        <button class="btn btn-outline btn-sm" onclick="prevCard('phys')">← Prev</button>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem">
+          <span class="fc-counter" id="phys-fc-counter">1 / 12</span>
+          <div class="fc-dots phys" id="phys-fc-dots"></div>
+        </div>
+        <button class="btn btn-ink btn-sm" onclick="nextCard('phys')">Next →</button>
+      </div>
+    </div>
+
+    <!-- PHYS QUIZ VIEW -->
+    <div class="flashcard-view" id="phys-quiz">
+      <div class="quiz-shell phys">
+        <div class="quiz-top">
+          <h3>Physics Higher Quiz</h3>
+          <span class="quiz-score-pill" id="phys-q-score">Score: 0 / 9</span>
+        </div>
+        <div class="quiz-body">
+          <div class="q-progress-bar phys"><div class="q-progress-fill" id="phys-qprog" style="width:11%"></div></div>
+          <div id="phys-q-render"></div>
+        </div>
+        <div class="quiz-footer">
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted)" id="phys-q-nav-label">Q1 of 9</span>
+          <div style="display:flex;gap:0.5rem">
+            <button class="btn btn-outline btn-sm" onclick="qPrev('phys')">← Back</button>
+            <button class="btn btn-ink btn-sm" onclick="qNext('phys')">Next →</button>
+          </div>
+        </div>
+        <div class="results-card" id="phys-results">
+          <div class="results-ring" id="phys-rring"><span class="results-ring-num" id="phys-rnum">0/9</span></div>
+          <div class="results-title" id="phys-rtitle">Quiz Complete!</div>
+          <div class="results-sub" id="phys-rsub"></div>
+          <button class="btn btn-ink" onclick="resetQuiz('phys')">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end phys panel -->
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">GCSE Science — Higher Tier</div>
+    <div class="footer-note">AQA · Edexcel · OCR · Year 10–11</div>
+    <div class="footer-tier">Grade 4–9 Content</div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+
+const flashcards = {
+  bio: [
+    { q: "What is the difference between mitosis and meiosis in terms of daughter cells?", a: "Mitosis: 2 genetically identical diploid daughter cells.\nMeiosis: 4 genetically non-identical haploid gametes.\nMitosis used for growth/repair; meiosis for sexual reproduction." },
+    { q: "What is a non-competitive inhibitor and how does it differ from a competitive inhibitor?", a: "Non-competitive: binds to a different site (allosteric site), permanently changes active site shape. NOT outcompeted by more substrate.\nCompetitive: binds to active site — can be outcompeted by increasing substrate concentration." },
+    { q: "Describe the monoclonal antibody production process (hybridoma method).", a: "1. Inject mouse with antigen\n2. Extract B-lymphocytes (make antibody)\n3. Fuse with tumour cell → Hybridoma\n4. Clone hybridoma cells in culture\n5. Harvest monoclonal antibodies" },
+    { q: "What is the role of ADH in osmoregulation? (Higher)", a: "High blood solute concentration detected by hypothalamus → pituitary releases more ADH → collecting duct becomes more permeable to water (aquaporins) → more water reabsorbed → small volume of concentrated urine." },
+    { q: "Explain the light-dependent reaction of photosynthesis.", a: "Occurs in thylakoid membranes.\nLight energy absorbed by chlorophyll.\nWater molecules split (photolysis): 2H₂O → 4H⁺ + 4e⁻ + O₂\nATP and NADPH produced.\nO₂ released as by-product." },
+    { q: "What is the formula for Simpson's Diversity Index and what does D close to 1 mean?", a: "D = 1 − [Σn(n−1) / N(N−1)]\nn = individuals of each species\nN = total individuals\nD closer to 1 = greater biodiversity\nD closer to 0 = lower biodiversity" },
+    { q: "How does sex-linked inheritance explain why haemophilia affects more males than females?", a: "Gene on X chromosome.\nFemales (XX) need two recessive alleles to be affected — can be carriers (X^H X^h).\nMales (XY) only have one X — one recessive allele causes the condition.\n∴ Males are more frequently affected." },
+    { q: "What is the Lincoln Index used for and state its formula?", a: "Used to estimate population size using mark-recapture technique.\nN = (M × R) / C\nM = number marked in first sample\nR = total caught in second sample\nC = number of marked individuals recaptured" },
+    { q: "What is the key difference between Type 1 and Type 2 diabetes?", a: "Type 1: autoimmune — pancreatic β-cells destroyed, no insulin produced. Requires insulin injections.\nType 2: body cells become resistant to insulin. Linked to obesity/diet. Managed by diet, exercise, medication." },
+    { q: "Describe the stages of the cell cycle.", a: "G1 phase: cell grows, proteins synthesised\nS phase: DNA replication (replication)\nG2 phase: further growth, organelles duplicated\nMitosis: chromosomes separate → 2 daughter nuclei\nCytokinesis: cytoplasm divides → 2 cells" },
+    { q: "What happens during the secondary immune response and why is it faster?", a: "Memory B-cells and T-cells retained after first exposure.\nOn re-exposure: memory cells rapidly divide and differentiate.\nAntibodies produced faster and in greater quantity.\nPathogen destroyed before symptoms develop." },
+    { q: "Explain eutrophication and its effect on aquatic organisms.", a: "Fertiliser leaches into water → excess nitrates/phosphates → algal bloom → light blocked → aquatic plants die → decomposers increase → decomposer respiration increases → dissolved oxygen depletes → aerobic organisms (fish) die." }
+  ],
+  chem: [
+    { q: "How do you calculate the relative atomic mass of chlorine from isotope data?", a: "Ar = Σ(mass × % abundance) / 100\nCl-35: 75% abundance; Cl-37: 25% abundance\nAr = (35 × 75 + 37 × 25) / 100\n   = (2625 + 925) / 100 = 35.5" },
+    { q: "Write the half-equation for the oxidation of chloride ions at the anode during electrolysis.", a: "2Cl⁻ → Cl₂ + 2e⁻\n\nOxidation occurs at the anode (positive electrode).\nElectrons are LOST (OILRIG).\nChlorine gas produced (test: bleaches damp litmus paper)." },
+    { q: "What is Le Chatelier's principle and how does temperature affect equilibrium?", a: "Le Chatelier's: if a change is imposed on a system in equilibrium, the equilibrium shifts to oppose that change.\nIncreasing temperature → shifts toward endothermic direction.\nDecreasing temperature → shifts toward exothermic direction.\nTemperature also changes Kc value (unlike pressure/catalyst)." },
+    { q: "Explain why graphite conducts electricity but diamond does not.", a: "Graphite: each carbon forms 3 covalent bonds → one delocalised electron per carbon → these free electrons carry charge → conducts electricity.\nDiamond: each carbon forms 4 covalent bonds → no delocalised electrons → cannot conduct electricity." },
+    { q: "State the bond energy calculation for ΔH and explain the signs.", a: "ΔH = Σ(bonds broken) − Σ(bonds made)\nBreaking bonds: endothermic (energy IN, positive)\nMaking bonds: exothermic (energy OUT, negative)\nIf bonds made > bonds broken: ΔH negative → exothermic reaction\nIf bonds broken > bonds made: ΔH positive → endothermic reaction" },
+    { q: "What is the Kc expression for: N₂(g) + 3H₂(g) ⇌ 2NH₃(g)?", a: "Kc = [NH₃]² / ([N₂][H₂]³)\nOnly gases/aqueous species included (not solids/liquids).\nKc > 1 → products favoured\nKc < 1 → reactants favoured\nTemperature changes Kc; pressure/catalyst do NOT." },
+    { q: "Describe the electrolysis of brine and the products at each electrode.", a: "Brine = NaCl(aq)\nCathode: 2H⁺ + 2e⁻ → H₂ (hydrogen gas)\nAnode: 2Cl⁻ → Cl₂ + 2e⁻ (chlorine gas)\nRemaining solution: NaOH (sodium hydroxide)\n\nUses: H₂ → fuel; Cl₂ → bleach/PVC; NaOH → soap" },
+    { q: "What is atom economy and why is it important for green chemistry?", a: "Atom economy = (Mr of desired product / total Mr of all products) × 100%\n\nHigh atom economy = less waste produced\nLower cost per unit of product\nMore sustainable and environmentally friendly\nGreen chemistry aims to maximise atom economy" },
+    { q: "Explain condensation polymerisation with an example.", a: "Monomers with TWO functional groups react and join.\nA small molecule (water or HCl) is eliminated at each bond.\n\nExample — Nylon (polyamide):\nDiamine + dicarboxylic acid → Nylon + H₂O\nRepeat unit contains amide linkage: -CO-NH-" },
+    { q: "What is the empirical formula of a compound that is 40% C, 6.7% H, 53.3% O by mass?", a: "Divide % by Ar:\nC: 40/12 = 3.33; H: 6.7/1 = 6.7; O: 53.3/16 = 3.33\n\nDivide by smallest (3.33):\nC: 1; H: 2; O: 1\n\nEmpirical formula: CH₂O" },
+    { q: "Why is aluminium extracted by electrolysis rather than reduction with carbon?", a: "Aluminium is higher in the reactivity series than carbon.\nCarbon cannot displace aluminium from its oxide.\nElectrolysis of molten Al₂O₃ (bauxite, dissolved in cryolite) required.\nVery expensive due to large electrical energy requirements." },
+    { q: "Calculate the concentration of NaOH if 25.0 cm³ required 22.5 cm³ of 0.100 mol/dm³ HCl to neutralise.", a: "Moles HCl = 0.100 × (22.5/1000) = 0.00225 mol\nNaOH + HCl → NaCl + H₂O (1:1 ratio)\nMoles NaOH = 0.00225 mol\nConc NaOH = 0.00225 / (25.0/1000) = 0.090 mol/dm³" }
+  ],
+  phys: [
+    { q: "State and explain the formula for internal resistance of a battery.", a: "EMF (ε) = I(R + r)\nε = electromotive force (open-circuit voltage)\nI = current; R = external resistance; r = internal resistance\nTerminal p.d. = ε − Ir (always less than EMF when current flows)\n'Lost volts' = Ir" },
+    { q: "A ball is thrown upward at 15 m/s. How high does it reach? (g = 10 m/s²)", a: "At max height, v = 0\nUsing v² = u² + 2as:\n0 = 15² + 2(−10)s\n0 = 225 − 20s\ns = 225/20 = 11.25 m\n\nKey: deceleration = −10 m/s² (upward +ve)" },
+    { q: "State Faraday's law of electromagnetic induction.", a: "The magnitude of the induced EMF is proportional to the rate of change of magnetic flux linkage.\n\nLenz's law: the induced current flows in a direction that opposes the change causing it.\n\nBoth laws together explain why generators work and what limits their output." },
+    { q: "What is the critical angle and how is it calculated?", a: "Critical angle (C): the angle of incidence beyond which total internal reflection occurs (when going from denser to less dense medium).\n\nsin C = 1/n (where n = refractive index)\n\nIf angle of incidence > C → total internal reflection\nUsed in: optical fibres, periscopes, diamond cutting" },
+    { q: "Calculate the current in the primary coil of a transformer: Vₚ = 230V, Vₛ = 11500V, Iₛ = 0.1A (assume 100% efficient).", a: "Power in = Power out (ideal transformer)\nIₚ × Vₚ = Iₛ × Vₛ\nIₚ × 230 = 0.1 × 11500\nIₚ = 1150 / 230 = 5.0 A\n\nVerification: turns ratio = 11500/230 = 50:1 (step-up)" },
+    { q: "Explain why high voltage is used to transmit electricity in the National Grid.", a: "P_loss = I²R\nStep-up transformer → increases voltage → decreases current\nSmaller current through cables → much less energy wasted as heat\nP_loss ∝ I² so halving I reduces losses by 75%\nStep-down transformer near homes → safe voltage for use" },
+    { q: "Write the nuclear equation for the alpha decay of uranium-238.", a: "²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂He\n\nMass number: 238 = 234 + 4 ✓\nAtomic number: 92 = 90 + 2 ✓\nAlpha particle = helium-4 nucleus\nProduct: Thorium-234" },
+    { q: "A sample has initial activity 800 Bq and half-life of 3 hours. What is the activity after 12 hours?", a: "Number of half-lives = 12 / 3 = 4\nActivity = 800 × (½)⁴\n= 800 × 1/16\n= 50 Bq\n\nAlternatively: 800→400→200→100→50" },
+    { q: "What is the Doppler effect and how does it provide evidence for the expanding universe?", a: "Doppler effect: change in observed frequency when source moves relative to observer.\n\nSource moving away → waves stretched → longer wavelength → lower frequency (red-shift for light).\n\nDistant galaxies show red-shift → moving away from us.\nMore distant galaxies → greater red-shift → faster recession.\nEvidence the universe is expanding from a single point (Big Bang)." },
+    { q: "Calculate the specific heat capacity if 4200 J heats 0.5 kg of liquid by 4°C.", a: "E = mcΔT\n4200 = 0.5 × c × 4\n4200 = 2c\nc = 2100 J/kg°C\n\n(Note: actual water = 4200 J/kg°C, so this liquid is different)" },
+    { q: "What is impulse and how is it calculated from a force-time graph?", a: "Impulse = change in momentum (Δp = mΔv)\nImpulse = F × Δt (for constant force)\nImpulse = area under a force-time graph (for variable force)\nUnits: N·s or kg·m/s\n\nApplications: crumple zones (longer Δt → smaller F)" },
+    { q: "Explain nuclear fusion and why it is difficult to achieve on Earth.", a: "Fusion: two light nuclei (e.g. ²H + ³H) merge → heavier nucleus + energy\nReleases enormous energy (more per kg than fission)\n\nDifficult because:\n• Nuclei are positively charged → strong electrostatic repulsion\n• Requires extremely high temperature (~100 million °C) and pressure\n• Magnetic confinement (tokamak) needed to contain plasma" }
+  ]
+};
+
+const quizzes = {
+  bio: [
+    { q: "Which type of cell division produces haploid cells?", opts: ["Mitosis","Meiosis","Binary fission","Budding"], ans: 1, diff: "H", ms: "Meiosis produces 4 haploid cells (half the chromosome number) needed for sexual reproduction. Mitosis produces 2 diploid cells." },
+    { q: "A competitive inhibitor reduces enzyme activity by:", opts: ["Changing the pH of the reaction","Blocking the active site, competing with substrate","Permanently altering the active site shape","Destroying the enzyme completely"], ans: 1, diff: "H", ms: "Competitive inhibitors block the active site by competing with substrate molecules. They CAN be outcompeted by increasing substrate concentration." },
+    { q: "In the monoclonal antibody hybridoma method, why are B-lymphocytes fused with tumour cells?", opts: ["To make them produce more antibodies","To give them the ability to divide indefinitely","To increase their antigen specificity","To make them resistant to antibiotics"], ans: 1, diff: "H", ms: "Tumour cells divide indefinitely. B-lymphocytes produce specific antibodies but have limited division. The hybridoma combines both properties." },
+    { q: "Which hormone controls the permeability of the collecting duct to water?", opts: ["Insulin","Glucagon","FSH","ADH (antidiuretic hormone)"], ans: 3, diff: "H", ms: "ADH (from posterior pituitary) increases aquaporin insertion into collecting duct walls → more permeable to water → more water reabsorbed." },
+    { q: "Calculate the rate of an enzyme reaction that completes in 40 seconds.", opts: ["40 s⁻¹","0.025 s⁻¹","4.0 s⁻¹","0.25 s⁻¹"], ans: 1, diff: "CALC", ms: "Rate = 1/time = 1/40 = 0.025 s⁻¹. Always use reciprocal of time for rate calculations." },
+    { q: "In sex-linked inheritance of haemophilia (X-linked recessive), which genotype describes a carrier female?", opts: ["X^H X^H","X^h X^h","X^H X^h","X^h Y"], ans: 2, diff: "H", ms: "X^H X^h = carrier female. She has one dominant (normal) and one recessive (haemophilia) allele on her X chromosomes. She does not have the condition but can pass it on." },
+    { q: "Which process converts lactic acid back to glucose after intense exercise?", opts: ["Glycolysis","Oxidative phosphorylation","Gluconeogenesis (in liver)","Fermentation"], ans: 2, diff: "H", ms: "After exercise, excess lactic acid is transported to liver where it is converted back to glucose (gluconeogenesis) or oxidised to CO₂ + H₂O to repay the oxygen debt." },
+    { q: "Simpson's Diversity Index (D) of 0.92 compared to 0.45 indicates:", opts: ["Lower species richness in the 0.92 ecosystem","Higher biodiversity in the 0.92 ecosystem","No difference in biodiversity","Lower biodiversity in the 0.92 ecosystem"], ans: 1, diff: "H", ms: "D closer to 1 = higher biodiversity. D = 0.92 indicates a more diverse, stable ecosystem compared to D = 0.45." },
+    { q: "During the light-dependent reaction of photosynthesis, where does photolysis occur?", opts: ["Stroma of chloroplast","Thylakoid membrane","Cytoplasm","Mitochondria"], ans: 1, diff: "H", ms: "Photolysis (splitting of water) occurs at the thylakoid membranes. Light energy splits water: 2H₂O → 4H⁺ + 4e⁻ + O₂. Oxygen is released as a by-product." }
+  ],
+  chem: [
+    { q: "Chlorine has isotopes ³⁵Cl (75%) and ³⁷Cl (25%). What is the relative atomic mass?", opts: ["36.0","35.5","36.5","35.0"], ans: 1, diff: "CALC", ms: "Ar = (35×75 + 37×25)/100 = (2625+925)/100 = 3550/100 = 35.5" },
+    { q: "Which of these is correctly written as the cathode half-equation for copper deposition?", opts: ["Cu → Cu²⁺ + 2e⁻","Cu²⁺ + 2e⁻ → Cu","2Cu → Cu₂²⁺ + 2e⁻","Cu²⁺ → Cu + 2e⁻"], ans: 1, diff: "H", ms: "Cathode = reduction = gain of electrons. Cu²⁺ + 2e⁻ → Cu. Electrons on the LEFT for reduction (cathode)." },
+    { q: "For the reaction N₂ + 3H₂ ⇌ 2NH₃ (exothermic), increasing temperature will:", opts: ["Increase NH₃ yield and increase Kc","Decrease NH₃ yield and decrease Kc","Increase NH₃ yield and decrease Kc","Decrease NH₃ yield and increase Kc"], ans: 1, diff: "H", ms: "Increasing T shifts equilibrium in endothermic direction (away from product here). NH₃ yield falls. Kc also decreases as products are less favoured." },
+    { q: "What is the atom economy of producing ethanol (Mr=46) from: C₂H₄ + H₂O → C₂H₅OH?", opts: ["100%","78%","88%","46%"], ans: 0, diff: "CALC", ms: "Atom economy = Mr desired product / total Mr of all products × 100%. There is only ONE product (ethanol, Mr=46). Total Mr of products = 46. So 46/46 × 100 = 100%." },
+    { q: "Which statement correctly describes non-competitive inhibitors?", opts: ["They compete with substrate for the active site","They can be overcome by adding more substrate","They bind to an allosteric site and change the active site shape","They only inhibit at low pH"], ans: 2, diff: "H", ms: "Non-competitive inhibitors bind to an allosteric (different) site → change the shape of the active site → substrate cannot fit. Adding more substrate does NOT overcome this inhibition." },
+    { q: "Calculate moles of HCl in 22.5 cm³ of 0.100 mol/dm³ solution.", opts: ["2.25 × 10⁻³ mol","2.25 × 10⁻² mol","0.225 mol","22.5 mol"], ans: 0, diff: "CALC", ms: "Moles = concentration × volume (dm³)\n= 0.100 × (22.5/1000)\n= 0.100 × 0.0225\n= 0.00225 = 2.25 × 10⁻³ mol" },
+    { q: "In graphene, what makes it electrically conductive?", opts: ["It has an ionic lattice","Each carbon forms 4 covalent bonds","One delocalised electron per carbon is free to move","It contains free protons"], ans: 2, diff: "H", ms: "In graphene (and graphite), each carbon forms 3 covalent bonds, leaving one delocalised electron per carbon atom free to move and conduct electricity. Diamond has 4 bonds → no free electrons." },
+    { q: "Bond energies: H-H = 436, Cl-Cl = 243, H-Cl = 432 kJ/mol. ΔH for H₂ + Cl₂ → 2HCl is:", opts: ["+185 kJ/mol","−185 kJ/mol","+679 kJ/mol","−864 kJ/mol"], ans: 1, diff: "CALC", ms: "ΔH = bonds broken − bonds made\nBroken: 436 + 243 = +679\nMade: 2 × 432 = 864\nΔH = 679 − 864 = −185 kJ/mol (exothermic)" },
+    { q: "What type of polymerisation forms nylon and what small molecule is eliminated?", opts: ["Addition polymerisation, CO₂","Condensation polymerisation, H₂O","Addition polymerisation, H₂O","Condensation polymerisation, HCl"], ans: 1, diff: "H", ms: "Nylon is a polyamide formed by condensation polymerisation between a diamine and a dicarboxylic acid. Water (H₂O) is eliminated at each amide bond formed." }
+  ],
+  phys: [
+    { q: "A battery has EMF = 12V and internal resistance r = 2Ω. Current = 2A. What is the terminal p.d.?", opts: ["12 V","8 V","10 V","4 V"], ans: 1, diff: "CALC", ms: "Terminal p.d. = EMF − Ir = 12 − (2 × 2) = 12 − 4 = 8 V\nLost volts = Ir = 4V. Terminal p.d. is always less than EMF when current flows." },
+    { q: "Using v² = u² + 2as: a ball drops from rest (u=0) over 5m (g=10m/s²). What is v?", opts: ["5 m/s","10 m/s","50 m/s","√10 m/s"], ans: 1, diff: "CALC", ms: "v² = 0² + 2 × 10 × 5 = 100\nv = √100 = 10 m/s" },
+    { q: "Glass has refractive index 1.5. What is the critical angle for total internal reflection?", opts: ["41.8°","48.2°","30°","33.7°"], ans: 0, diff: "CALC", ms: "sin C = 1/n = 1/1.5 = 0.667\nC = sin⁻¹(0.667) = 41.8°\nTIR occurs when angle of incidence exceeds this." },
+    { q: "A transformer steps up from 230V to 11500V. If primary current is 5A, what is secondary current? (100% efficiency)", opts: ["250A","0.1A","5A","115A"], ans: 1, diff: "CALC", ms: "IₚVₚ = IₛVₛ (ideal transformer)\n5 × 230 = Iₛ × 11500\nIₛ = 1150/11500 = 0.1A\nStepping up voltage by factor 50 → current reduced by factor 50." },
+    { q: "Lenz's law states that the direction of induced current is such that it:", opts: ["Maximises the flux change causing it","Opposes the change in magnetic flux causing it","Runs in the same direction as the causing current","Always flows clockwise"], ans: 1, diff: "H", ms: "Lenz's law: induced current creates a magnetic field that OPPOSES the change in flux causing it. This is consistent with conservation of energy — you must do work against this opposition." },
+    { q: "After 4 half-lives, what fraction of a radioactive sample remains?", opts: ["1/8","1/4","1/16","1/2"], ans: 2, diff: "CALC", ms: "After n half-lives: fraction remaining = (½)ⁿ\n(½)⁴ = 1/16\nAlternatively: after each half-life: 1 → 1/2 → 1/4 → 1/8 → 1/16" },
+    { q: "Energy E = mcΔT. Water (c=4200 J/kg°C). How much energy to heat 2kg by 50°C?", opts: ["42000 J","840 J","420000 J","4200 J"], ans: 2, diff: "CALC", ms: "E = mcΔT = 2 × 4200 × 50 = 420000 J = 420 kJ" },
+    { q: "In the National Grid, why does transmitting at high voltage reduce energy losses?", opts: ["Higher voltage reduces resistance of cables","Higher voltage reduces current, and P_loss = I²R so losses fall dramatically","Higher voltage increases current which heats cables less","Voltage and power loss are directly proportional"], ans: 1, diff: "H", ms: "P_loss = I²R. Doubling voltage halves current (P=IV constant). Halving I reduces I²R losses by 75%. This is why high-voltage transmission is so much more efficient." },
+    { q: "Red-shift of distant galaxies provides evidence for the Big Bang because:", opts: ["Red light travels faster than other colours","Galaxies are moving toward us causing compression","All distant galaxies show their light is stretched to longer wavelengths, indicating they are moving away — universe is expanding","Red stars are older and further away"] , ans: 2, diff: "H", ms: "Red-shift: wavelengths of light from distant galaxies are stretched → galaxies moving away. Greater distance = greater red-shift = faster recession. This implies the universe is expanding from a single origin (Big Bang)." }
+  ]
+};
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+
+const state = {
+  bio:  { fc: 0, fcFlipped: false, quiz: 0, quizScore: 0, answered: Array(9).fill(null) },
+  chem: { fc: 0, fcFlipped: false, quiz: 0, quizScore: 0, answered: Array(9).fill(null) },
+  phys: { fc: 0, fcFlipped: false, quiz: 0, quizScore: 0, answered: Array(9).fill(null) }
+};
+
+let visitedTopics = new Set();
+
+// ═══════════════════════════════════════════════════════
+// SUBJECT SWITCHING
+// ═══════════════════════════════════════════════════════
+
+function switchSubject(subj, btn) {
+  document.querySelectorAll('.subject-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => { t.className = 'nav-tab'; });
+  document.getElementById('panel-' + subj).classList.add('active');
+  btn.classList.add('active-' + subj);
+}
+
+// ═══════════════════════════════════════════════════════
+// MODE TOGGLE (topics / flashcards / quiz)
+// ═══════════════════════════════════════════════════════
+
+function setMode(subj, mode, btn) {
+  // update buttons
+  const wrap = document.getElementById(subj + '-mode-toggle');
+  wrap.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // hide/show views
+  const topicsEl = document.getElementById(subj + '-topics');
+  const flashEl  = document.getElementById(subj + '-flash');
+  const quizEl   = document.getElementById(subj + '-quiz');
+
+  topicsEl.className = 'topics-view' + (mode === 'topics' ? '' : ' hidden');
+  flashEl.className  = 'flashcard-view ' + subj + (mode === 'flash' ? ' active' : '');
+  quizEl.className   = 'flashcard-view' + (mode === 'quiz' ? ' active' : '');
+
+  if (mode === 'flash') renderFlashcard(subj);
+  if (mode === 'quiz') renderQuestion(subj);
+}
+
+// ═══════════════════════════════════════════════════════
+// TOPIC ACCORDION
+// ═══════════════════════════════════════════════════════
+
+function toggleItem(item) {
+  const isExpanded = item.classList.contains('expanded');
+  // close all siblings
+  item.closest('.topics-list').querySelectorAll('.topic-item').forEach(i => i.classList.remove('expanded'));
+  if (!isExpanded) {
+    item.classList.add('expanded');
+    visitedTopics.add(item.querySelector('.trig-title').textContent);
+    updateProgress();
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════════════
+
+function updateProgress() {
+  const total = document.querySelectorAll('.topic-item').length;
+  const pct = Math.round((visitedTopics.size / total) * 100);
+  document.getElementById('xpFill').style.width = pct + '%';
+  document.getElementById('xpPct').textContent = pct + '%';
+}
+
+// ═══════════════════════════════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════════════════════════════
+
+function renderFlashcard(subj) {
+  const s = state[subj];
+  const fc = flashcards[subj][s.fc];
+  document.getElementById(subj + '-fc-q').textContent = fc.q;
+  document.getElementById(subj + '-fc-a').textContent = fc.a;
+  document.getElementById(subj + '-fc-counter').textContent = (s.fc + 1) + ' / ' + flashcards[subj].length;
+  // reset flip
+  s.fcFlipped = false;
+  document.getElementById(subj + '-card').classList.remove('flipped');
+  // dots
+  const dotsEl = document.getElementById(subj + '-fc-dots');
+  dotsEl.innerHTML = flashcards[subj].map((_, i) =>
+    `<div class="fc-dot ${i === s.fc ? 'active' : ''}"></div>`
+  ).join('');
+}
+
+function flipCard(subj) {
+  const s = state[subj];
+  s.fcFlipped = !s.fcFlipped;
+  document.getElementById(subj + '-card').classList.toggle('flipped', s.fcFlipped);
+}
+
+function nextCard(subj) {
+  const s = state[subj];
+  s.fc = (s.fc + 1) % flashcards[subj].length;
+  renderFlashcard(subj);
+}
+
+function prevCard(subj) {
+  const s = state[subj];
+  s.fc = (s.fc - 1 + flashcards[subj].length) % flashcards[subj].length;
+  renderFlashcard(subj);
+}
+
+// ═══════════════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════════════
+
+function renderQuestion(subj) {
+  const s = state[subj];
+  const qs = quizzes[subj];
+  const total = qs.length;
+  const idx = s.quiz;
+  const q = qs[idx];
+  const answered = s.answered[idx];
+
+  // Update progress bar
+  document.getElementById(subj + '-qprog').style.width = ((idx + 1) / total * 100) + '%';
+  document.getElementById(subj + '-q-nav-label').textContent = `Q${idx + 1} of ${total}`;
+  document.getElementById(subj + '-q-score').textContent = `Score: ${s.quizScore} / ${total}`;
+
+  const letters = ['A','B','C','D'];
+  const diffMap = { H: 'diff-hard', CALC: 'diff-calc', medium: 'diff-mid' };
+  const diffLabel = q.diff || 'H';
+  const diffCls = q.diff === 'CALC' ? 'diff-calc' : 'diff-hard';
+
+  const optsHtml = q.opts.map((opt, i) => {
+    let cls = '';
+    if (answered !== null) {
+      if (i === q.ans) cls = 'correct';
+      else if (i === answered) cls = 'wrong';
+    }
+    return `<button class="q-opt ${cls}" onclick="answerQ('${subj}',${i})" ${answered !== null ? 'disabled' : ''}>
+      <span class="opt-letter">${letters[i]}</span>${opt}
+    </button>`;
+  }).join('');
+
+  const feedbackHtml = answered !== null
+    ? `<div class="q-feedback ${answered === q.ans ? 'correct' : 'wrong'} show">
+        ${answered === q.ans ? '✓ Correct!' : `✗ Incorrect — correct answer: ${q.opts[q.ans]}`}
+      </div>`
+    : `<div class="q-feedback"></div>`;
+
+  const msHtml = (answered !== null && q.ms)
+    ? `<div class="q-ms show">📋 Mark scheme: ${q.ms}</div>`
+    : `<div class="q-ms"></div>`;
+
+  document.getElementById(subj + '-q-render').innerHTML = `
+    <div class="q-meta">
+      <span>Question ${idx + 1} of ${total}</span>
+      <span class="q-diff ${diffCls}">${diffLabel}</span>
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-opts">${optsHtml}</div>
+    ${feedbackHtml}
+    ${msHtml}
+  `;
+}
+
+function answerQ(subj, i) {
+  const s = state[subj];
+  if (s.answered[s.quiz] !== null) return;
+  s.answered[s.quiz] = i;
+  if (i === quizzes[subj][s.quiz].ans) s.quizScore++;
+  renderQuestion(subj);
+  updateProgress();
+  // check if all answered
+  if (s.answered.every(a => a !== null)) showResults(subj);
+}
+
+function qNext(subj) {
+  const s = state[subj];
+  if (s.quiz < quizzes[subj].length - 1) { s.quiz++; renderQuestion(subj); }
+  else showResults(subj);
+}
+
+function qPrev(subj) {
+  const s = state[subj];
+  if (s.quiz > 0) { s.quiz--; renderQuestion(subj); }
+}
+
+function showResults(subj) {
+  const s = state[subj];
+  const total = quizzes[subj].length;
+  const score = s.quizScore;
+  const pct = Math.round(score / total * 100);
+  const grade = pct >= 88 ? '9' : pct >= 77 ? '8' : pct >= 66 ? '7' : pct >= 55 ? '6' : pct >= 44 ? '5' : pct >= 33 ? '4' : '3';
+  const msg = pct >= 77 ? '🏆 Excellent! Grade ' + grade + ' territory.' : pct >= 55 ? '👍 Good effort. Target Grade ' + grade + '. Review missed topics.' : '📚 Keep revising. Grade ' + grade + ' currently. Flashcards first, then retry.';
+
+  const ring = document.getElementById(subj + '-rring');
+  const pctCss = Math.round((score / total) * 360);
+  ring.style.cssText = `width:100px;height:100px;border-radius:50%;background:conic-gradient(var(--bio) ${pctCss}deg, var(--paper2) 0);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative`;
+  document.getElementById(subj + '-rnum').textContent = `${score}/${total}`;
+  document.getElementById(subj + '-rtitle').textContent = `Quiz Complete — ${pct}%`;
+  document.getElementById(subj + '-rsub').textContent = msg;
+  document.getElementById(subj + '-q-render').style.display = 'none';
+  document.getElementById(subj + '-results').className = 'results-card show';
+  document.getElementById(subj + '-q-score').textContent = `Score: ${score} / ${total}`;
+}
+
+function resetQuiz(subj) {
+  const s = state[subj];
+  s.quiz = 0; s.quizScore = 0;
+  s.answered = Array(quizzes[subj].length).fill(null);
+  document.getElementById(subj + '-q-render').style.display = 'block';
+  document.getElementById(subj + '-results').className = 'results-card';
+  renderQuestion(subj);
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+
+['bio','chem','phys'].forEach(s => {
+  renderFlashcard(s);
+  renderQuestion(s);
+});
+</script>
+
+</body>
+</html>
